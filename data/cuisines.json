@@ -1,0 +1,118 @@
+[
+  {
+    "id": 1,
+    "name": "American 美式"
+  },
+  {
+    "id": 2,
+    "name": "Asian 亞洲菜"
+  },
+  {
+    "id": 3,
+    "name": "Breakfast 早餐"
+  },
+  {
+    "id": 4,
+    "name": "Burgers 漢堡"
+  },
+  {
+    "id": 5,
+    "name": "Cakes & Bakery 甜品包點"
+  },
+  {
+    "id": 6,
+    "name": "Chinese 中式"
+  },
+  {
+    "id": 7,
+    "name": "European 歐洲菜"
+  },
+  {
+    "id": 8,
+    "name": "Fast Food 快餐"
+  },
+  {
+    "id": 9,
+    "name": "French 法式"
+  },
+  {
+    "id": 10,
+    "name": "Greek 希臘菜"
+  },
+  {
+    "id": 11,
+    "name": "Halal 清真"
+  },
+  {
+    "id": 12,
+    "name": "Healthy Food 健康食品"
+  },
+  {
+    "id": 13,
+    "name": "Indian 印度菜"
+  },
+  {
+    "id": 14,
+    "name": "Italian 意式"
+  },
+  {
+    "id": 15,
+    "name": "Japanese 日式"
+  },
+  {
+    "id": 16,
+    "name": "Korean 韓式"
+  },
+  {
+    "id": 17,
+    "name": "Local 港式"
+  },
+  {
+    "id": 18,
+    "name": "Mediterranean 地中海"
+  },
+  {
+    "id": 19,
+    "name": "Mexican 墨西哥菜"
+  },
+  {
+    "id": 20,
+    "name": "Middle Eastern 中東菜"
+  },
+  {
+    "id": 21,
+    "name": "Pizza 薄餅"
+  },
+  {
+    "id": 22,
+    "name": "Sandwiches 三文治"
+  },
+  {
+    "id": 23,
+    "name": "Seafood 海鮮"
+  },
+  {
+    "id": 24,
+    "name": "Spanish 西班牙菜"
+  },
+  {
+    "id": 25,
+    "name": "Sushi 壽司"
+  },
+  {
+    "id": 26,
+    "name": "Thai 泰國菜"
+  },
+  {
+    "id": 27,
+    "name": "Vegetarian 素食"
+  },
+  {
+    "id": 28,
+    "name": "Vietnamese 越式"
+  },
+  {
+    "id": 29,
+    "name": "Others 其他"
+  }
+]

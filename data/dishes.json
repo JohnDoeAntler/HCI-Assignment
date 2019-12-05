@@ -1,0 +1,55 @@
+[{
+	"id": 1,
+	"name": "Chicken \u0026 Egg McMuffi",
+	"price": 12,
+	"menu_id": 1,
+	"image_url": "https://images.pexels.com/photos/2116092/pexels-photo-2116092.jpeg"
+}, {
+	"id": 2,
+	"name": "Sausage McMuffin® with Egg",
+	"price": 11,
+	"menu_id": 1,
+	"image_url": "https://images.pexels.com/photos/2116091/pexels-photo-2116091.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+}, {
+	"id": 3,
+	"name": "Filet-O-Fish",
+	"price": 11,
+	"menu_id": 1,
+	"image_url": "https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+}, {
+	"id": 4,
+	"name": "Hot \u0026 Spicy Flava Chicken",
+	"price": 22,
+	"menu_id": 2,
+	"image_url": "https://images.pexels.com/photos/2116092/pexels-photo-2116092.jpeg"
+}, {
+	"id": 5,
+	"name": "Hot Wings",
+	"price": 13,
+	"menu_id": 2,
+	"image_url": "https://images.pexels.com/photos/2116092/pexels-photo-2116092.jpeg"
+}, {
+	"id": 6,
+	"name": "Egg Tart",
+	"price": 8,
+	"menu_id": 2,
+	"image_url": "https://images.pexels.com/photos/2116092/pexels-photo-2116092.jpeg"
+}, {
+	"id": 7,
+	"name": "Lobster Bisque with Puff Pastry",
+	"price": 20,
+	"menu_id": 3,
+	"image_url": "https://images.pexels.com/photos/2116092/pexels-photo-2116092.jpeg"
+}, {
+	"id": 8,
+	"name": "Spaghetti Bolognese (Beef)",
+	"price": 20,
+	"menu_id": 3,
+	"image_url": "https://images.pexels.com/photos/2116092/pexels-photo-2116092.jpeg"
+}, {
+	"id": 9,
+	"name": "Spaghetti Carbonara",
+	"price": 69,
+	"menu_id": 3,
+	"image_url": "https://images.pexels.com/photos/2116092/pexels-photo-2116092.jpeg"
+}]

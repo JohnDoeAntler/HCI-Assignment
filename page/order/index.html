@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	
+		<!-- Bootstrap core CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+	
+		<!-- JQuery -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+		<!-- Bootstrap tooltips -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	
+		<!-- Bootstrap core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+	</head>
+	<body>
+		<div id="navbar"></div>
+
+		<div class="container my-5 pt-5">
+			<div class="row">
+				<div class="col">
+					<h1 class="display-1">View Orders</h1>
+
+					<hr>
+
+					<p>
+						Cillum dolor nisi occaecat cillum ipsum. Esse labore ullamco fugiat amet id culpa eiusmod occaecat pariatur. Laboris reprehenderit anim voluptate non fugiat ea aliquip sint nulla duis cillum adipisicing aute sit. Adipisicing Lorem dolore voluptate sit in. Labore ea culpa nisi eiusmod aliqua cillum. Consequat culpa laboris tempor sit non culpa ipsum excepteur.
+					</p>
+
+					<table id="orders" class="text-center table table-bordered table-hover table-striped table-editable">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Orderer</th>
+								<th>City</th>
+								<th>Area</th>
+								<th>Address</th>
+								<th>Total</th>
+								<th>Status</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer"></div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					</div>
+					<div class="modal-body">
+						<table id="dishes" class="text-center table table-bordered table-hover table-striped table-editable">
+							<thead>
+								<tr>
+									<th>#</th>
+									<td>Dish</td>
+									<td>Price</td>
+									<td>Quantity</td>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+
+						<input type="hidden" name="id" id="id">
+
+						Total price: <code id="total"></code>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button onclick="submit()" type="button" class="btn btn-primary">Mark as completed</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$('#navbar').load('/component/navbar.html');
+			$('#footer').load('/component/footer.html');
+
+			$.getJSON('/data/users.json', users => {
+				$.getJSON('/data/orders.json', orders => {
+					$.getJSON('/data/cities.json', cities => {
+						$.getJSON('/data/areas.json', areas => {
+							$.getJSON('/data/menus.json', menus => {
+								$.getJSON('/data/restaurants.json', restaurants => {
+									$.getJSON('/data/dishes.json', dishes => {
+										orders = orders.map(order => {
+											let area = areas.find(area => area.id == order.area_id);
+											let city = cities.find(city => city.id == area.city_id);
+											let orderer = users.find(user => user.id == order.orderer_id);
+											area = area.name;
+											city = city.name;
+											orderer = orderer.username;
+
+											order.dishes = order.dishes.map(dish => {
+												return {
+													...dish,
+													...dishes.find(x => x.id == dish.id)
+												}
+											});
+
+											return {
+												...order,
+												area,
+												city,
+												orderer
+											}
+										});
+
+										orders.forEach(order => order.dishes = order.dishes.filter(dish => {
+											let menu = menus.find(menu => menu.id == dish.menu_id);
+											let restaurant = restaurants.find(restaurant => restaurant.id == menu.restaurant_id);
+
+											return restaurant.user_id == Cookies.get('id');
+										}));
+
+										orders = orders.filter(order => order.dishes.length);
+										orders = orders.map(order => {
+											return {
+												...order,
+												total: order.dishes.map(dish => dish.price * dish.quantity).reduce((a, b) => a + b).toFixed(2)
+											}
+										})
+
+										this.orders = orders;
+
+										// implementation
+
+										orders.forEach(order => {
+											$('#orders>tbody').append(
+												li(
+													order
+												)
+											)
+										})
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+
+			let view = (id) => {
+				$('#dishes>tbody').empty();
+				$('#total').text(`$${this.orders.find(order => order.id == id).dishes.map(x => x.quantity * x.price).reduce((a, b) => a + b).toFixed(2)}`);
+				$('#id').val(id);
+
+				this.orders.find(order => order.id == id).dishes.forEach(dish => {
+					$('#dishes>tbody').append(
+						li2(
+							dish
+						)
+					)
+				})
+			}
+
+			let submit = () => {
+				$(`#status-${$('#id').val()}`).text('completed');
+				$('#detail').modal('toggle');
+			}
+
+			let li = ({
+				id,
+				orderer,
+				city,
+				area,
+				address,
+				total,
+				status,
+			}) => `
+				<tr>
+					<td>${id}</td>
+					<td>${orderer}</td>
+					<td>${city}</td>
+					<td>${area}</td>
+					<td>${address}</td>
+					<td>$ ${total}</td>
+					<td id="status-${id}">${status}</td>
+					<td>
+						<i class="fas fa-eye" onclick="view(${id})" style="cursor: pointer" data-toggle="modal" data-target="#detail"></i>
+					</td>
+				</tr>
+			`;
+
+			let li2 = ({
+				id,
+				name,
+				price,
+				quantity,
+			}) => `
+				<tr>
+					<td>${id}</td>
+					<td>${name}</td>
+					<td>$ ${price.toFixed(2)}</td>
+					<td>${quantity}</td>
+				</tr>
+			`;
+		</script>
+	</body>
+</html>

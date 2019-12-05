@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+	</script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
+	</script>
+
+	<link rel="stylesheet" href="/style/page/register.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div id="main-pane" class="container-fluid">
+		<div class="row">
+			<div class="col-12 col-sm-6 col-lg-3 left-pane pink pt-5 pl-sm-5 text-white">
+
+				<div class="mt-5"></div>
+
+				<h1 class="display-4">Profile</h1>
+
+				<hr>
+
+				<img class="center d-block mx-auto w-50" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" alt="">
+
+				<p class="text-center mt-3">
+					Consequat aute deserunt fugiat amet do elit.
+				</p>
+
+				<!-- Medium input -->
+				<div class="md-form md-bg">
+					<input type="text" id="id" name="id" class="form-control text-white" minlength="8" max="32" readonly>
+					<label class="blue-text" for="id">ID</label>
+					<small style="color: rgba(255, 255, 255, 0.5)">Duis nisi sint dolor sunt consequat incididunt dolor cillum.</small>
+				</div>
+
+				<!-- Medium input -->
+				<div class="md-form md-bg">
+					<input type="text" id="username" name="username" class="form-control text-white" minlength="8" max="32" readonly>
+					<label class="blue-text" for="username">Username</label>
+					<small style="color: rgba(255, 255, 255, 0.5)">Duis nisi sint dolor sunt consequat incididunt dolor cillum.</small>
+				</div>
+
+				<!-- Medium input -->
+				<div class="md-form md-bg">
+					<input type="text" id="role" name="role" class="form-control text-white" minlength="8" max="32" readonly>
+					<label class="blue-text" for="role">Role</label>
+					<small style="color: rgba(255, 255, 255, 0.5)">Aliquip aute ullamco reprehenderit nisi pariatur eiusmod.</small>
+				</div>
+
+				<a id="edit-link" class="self-only">
+					<button type="button" class="btn shadow-none text-white w-100 mx-0" style="background-color: rgba(0, 0, 0, .1)">Change password</button>
+				</a>
+			</div>
+
+			<div class="col p-0">
+				<img src="https://images.pexels.com/photos/2591276/pexels-photo-2591276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="w-100 h-100 position-absolute" style="z-index: -1; object-fit: cover;">
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+		
+		const urlParams = new URLSearchParams(window.location.search);
+		const id = urlParams.get('id');
+
+		$.getJSON('/data/users.json', (users) => {
+			let user = users.filter(user => user.id == id)[0];
+
+			$('#id').val(user.id).trigger('change');
+			$('#username').val(user.username).trigger('change');
+			$('#role').val(user.role).trigger('change');
+		});
+
+		$('#edit-link').attr('href', '/page/user/edit.html?id=' + id);
+
+		setInterval(() => {
+			if (Cookies.get('id') != id) {
+				$('.self-only').css('display', 'none');
+			}
+		}, 100);
+	</script>
+</body>
+
+</html>

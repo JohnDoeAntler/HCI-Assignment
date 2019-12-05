@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+	</script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
+	</script>
+
+	<!-- auto complete -->
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div class="container my-5 mt-5">
+		<div class="row pt-5">
+			<div class="col">
+				<h1 class="display-1">Create Restaurant</h1>
+				<hr>
+				<p>
+					Aute dolore do aliquip irure proident. Ut consequat anim in consequat sunt dolor ea fugiat amet.
+					Anim eu cupidatat irure ad sit exercitation est laboris ullamco. Mollit elit laborum cillum fugiat
+					id. Irure voluptate labore ad culpa esse aliquip.
+				</p>
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Stepers Wrapper -->
+						<ul class="stepper stepper-horizontal">
+
+							<!-- First Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Submit information</span>
+								</a>
+							</li>
+
+							<!-- Second Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Submit branches</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Submit menus</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Complete</span>
+								</a>
+							</li>
+						</ul>
+						<!-- /.Stepers Wrapper -->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col">
+						<a href="/page/restaurant/show.html?id=1">
+							<button type="button" class="btn pink text-white w-100">View restaurant</button>
+						</a>
+						<a href="/">
+							<button type="button" class="btn pink text-white w-100">Return to home page</button>
+						</a>
+					</div>
+				</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+	</script>
+</body>
+
+</html>

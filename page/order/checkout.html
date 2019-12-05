@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+	<!-- auto complete -->
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div class="container my-5 mt-5">
+		<div class="row pt-5">
+			<div class="col">
+				<h1 class="display-1">Checkout</h1>
+				<hr>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, architecto. Tenetur cumque ab
+					voluptates aspernatur ex repellendus magni ut, vero unde maxime veniam necessitatibus sint debitis
+					voluptate accusamus sit id!
+				</p>
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Stepers Wrapper -->
+						<ul class="stepper stepper-horizontal">
+							<!-- First Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-pen"></i></span>
+									<span class="label">Delivery address</span>
+								</a>
+							</li>
+
+							<!-- Second Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-clipboard-list"></i></span>
+									<span class="label">Choose payment</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-clipboard-list"></i></span>
+									<span class="label">Complete</span>
+								</a>
+							</li>
+						</ul>
+						<!-- /.Stepers Wrapper -->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col">
+						<table id="items" class="text-center table table-bordered table-hover table-striped table-editable">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<hr>
+
+				<h1 class="display-4">Delivery Address</h1>
+
+				<form name="form" action="#">
+					<div class="row">
+						<div class="col">
+							<div class="md-form md-bg mt-2">
+								<input type="text" id="city" class="form-control readonly" required>
+								<label for="city">City</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+									enim dolor.</small>
+								<div id="city-options" class="option-wrapper animate"></div>
+							</div>
+
+							<div class="md-form md-bg">
+								<input type="text" id="area" class="form-control readonly" required>
+								<label for="area">Area</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Ex id duis dolor ea fugiat in velit excepteur enim esse.</small>
+								<div id="area-options" class="option-wrapper animate"></div>
+							</div>
+
+							<div class="md-form md-bg pink-textarea active-pink-textarea">
+								<textarea id="address" name="address" class="md-textarea form-control" required></textarea>
+								<label for="address">Address</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Pariatur veniam velit ad qui sint esse Lorem.</small>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col text-center">
+							<button type="submit" class="btn pink text-white">submit</button>
+							<button type="reset" class="btn pink text-white"
+								onclick="$('#dishes>tbody>tr').fadeOut(500, () => $('#dishes>tbody>tr').remove());">reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		$.getJSON('/data/cities.json', (cities) => {
+			this.cityArray = cities;
+		});
+
+		$.getJSON('/data/areas.json', (areas) => {
+			this.areaArray = areas;
+		});
+
+		let update = (str) => {
+			$(`#${str}-options`).empty();
+
+			let arr = this[str + 'Array'];
+
+			if (arr.length > 1) {
+				arr.forEach(city => {
+					$(`#${str}-options`).append(`
+						<div class="autocomplete-option animate">${city.name}</div>
+					`);
+				});
+			}
+
+			$('.autocomplete-option').click(({currentTarget}) => {
+				let input = $(currentTarget.parentElement).siblings('input');
+				input.val($(currentTarget).text()).trigger('change');
+			});
+		}
+
+		['city', 'area'].forEach((e) => {
+			$(`#${e}`).on({
+				focus: () => {
+					setTimeout(() => {
+						update(e);
+						$(`#${e}-options`).css('opacity', 1);
+						$(`#${e}-options`).css('pointer-events', 'auto');
+					}, 100);
+				},
+				blur: () => {
+					setTimeout(() => {
+						$(`#${e}-options`).css('opacity', 0);
+						$(`#${e}-options`).css('pointer-events', 'none');
+					}, 100);
+				},
+			});
+		});
+
+		let li = ({
+			id,
+			name,
+			price,
+			quantity,
+		}) => `
+			<tr>
+				<th>${id}</th>
+				<td>${name}</td>
+				<td>$ ${price.toFixed(2)}</td>
+				<td>${quantity}</td>
+				<td>$ ${(price * quantity).toFixed(2)}</td>
+			</tr>
+		`;
+
+		setTimeout(() => {
+			$.getJSON('/data/dishes.json', dishes => {
+				if (!!Cookies.get('cart')) {
+					let items = JSON.parse(Cookies.get('cart'));
+
+					items = items.map(item => {
+						return {
+							...item,
+							...dishes.filter(dish => dish.id == item.id)[0],
+						}
+					})
+
+					$('#items>tbody').empty();
+
+					items.forEach(item => {
+						$('#items>tbody').append(
+							li(
+								item
+							)
+						);
+					});
+				}
+			});
+		}, 100);
+
+		$(document.form).submit(e => {
+			e.preventDefault();
+
+			window.location.assign('/page/order/payment.html');
+		})
+	</script>
+</body>
+
+</html>

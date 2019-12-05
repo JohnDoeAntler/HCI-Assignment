@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Central and Western 中西區",
+    "city_id": 1
+  },
+  {
+    "id": 2,
+    "name": "Eastern 東區",
+    "city_id": 1
+  },
+  {
+    "id": 3,
+    "name": "Southern 南區",
+    "city_id": 1
+  },
+  {
+    "id": 4,
+    "name": "Wan Chai 灣仔區",
+    "city_id": 1
+  },
+  {
+    "id": 5,
+    "name": "Sham Shui Po 深水埗區",
+    "city_id": 2
+  },
+  {
+    "id": 6,
+    "name": "Kowloon City 九龍城區",
+    "city_id": 2
+  },
+  {
+    "id": 7,
+    "name": "Kwun Tong 觀塘區",
+    "city_id": 2
+  },
+  {
+    "id": 8,
+    "name": "Wong Tai Sin 黃大仙區",
+    "city_id": 2
+  },
+  {
+    "id": 9,
+    "name": "Yau Tsim Mong 油尖旺區",
+    "city_id": 2
+  },
+  {
+    "id": 10,
+    "name": "Islands 離島區",
+    "city_id": 3
+  },
+  {
+    "id": 11,
+    "name": "Kwai Tsing 葵青區",
+    "city_id": 3
+  },
+  {
+    "id": 12,
+    "name": "North 北區",
+    "city_id": 3
+  },
+  {
+    "id": 13,
+    "name": "Sai Kung 西貢區",
+    "city_id": 3
+  },
+  {
+    "id": 14,
+    "name": "Sha Tin 沙田區",
+    "city_id": 3
+  },
+  {
+    "id": 15,
+    "name": "Tai Po 大埔區",
+    "city_id": 3
+  },
+  {
+    "id": 16,
+    "name": "Tsuen Wan 荃灣區",
+    "city_id": 3
+  },
+  {
+    "id": 17,
+    "name": "Tuen Mun 屯門區",
+    "city_id": 3
+  },
+  {
+    "id": 18,
+    "name": "Yuen Long 元朗區",
+    "city_id": 3
+  }
+]

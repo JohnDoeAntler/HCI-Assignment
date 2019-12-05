@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+	<!-- auto complete -->
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar" class="my-5"></div>
+
+	<div class="container my-5 pt-5">
+		<div class="row">
+			<div class="col">
+				<h1 class="display-1">Create Restaurant</h1>
+				<hr>
+				<p>
+					You could add your own restaurant to this website by following few step. First, you have to submit all correlated information about your adding restaurant.
+					Second, you have to submit all branches your restaurant has to enable user could find your restaurant by its branch information. Third, you have to submti the
+					menu of restaurant to provide a preview for user letting they know the actual food look likes. Lastly, it should be successfully created.
+				</p>
+				<!-- Horizontal Steppers -->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Stepers Wrapper -->
+						<ul class="stepper stepper-horizontal">
+
+							<!-- First Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-pen"></i></span>
+									<span class="label">Submit information</span>
+								</a>
+							</li>
+
+							<!-- Second Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-clipboard-list"></i></span>
+									<span class="label">Submit branches</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-clipboard-list"></i></span>
+									<span class="label">Submit menus</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-clipboard-list"></i></span>
+									<span class="label">Complete</span>
+								</a>
+							</li>
+						</ul>
+						<!-- /.Stepers Wrapper -->
+					</div>
+				</div>
+				<!-- /.Horizontal Steppers -->
+				<form name="form" action="#" class="mt-3">
+					<div class="row">
+						<div class="col border-right">
+							<!-- Material background input -->
+							<div class="md-form md-bg">
+								<input type="text" id="name" class="form-control" required autofocus>
+								<label for="name">Restaurant Name</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Please enter the restaurant name here.</small>
+							</div>
+
+							<!-- Material background input -->
+							<div class="md-form md-bg">
+								<input type="email" id="email" class="form-control" required>
+								<label for="email">Contact Email</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Please enter the restaurant contact use email address here.</small>
+							</div>
+
+							<!-- Material background input -->
+							<div class="md-form md-bg">
+								<input type="tel" id="phone" pattern="^\d{8}$" class="form-control" required>
+								<label for="phone">Contact Phone Number</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Please enter the restaurant contact use phone number here.</small>
+							</div>
+
+							<div class="md-form md-bg">
+								<input type="text" id="cuisine" class="form-control readonly" required>
+								<label for="cuisine">Cuisine</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Please select the cuisine style of restaurant here.</small>
+								<i class="fas fa-times position-absolute m-3" style="top: 0; right: 0; cursor: pointer; color: rgba(0, 0, 0, 0.75);" onclick="$(this).siblings('input').val('').trigger('change')"></i>
+								<div id="cuisine-options" class="option-wrapper animate"></div>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="md-form md-bg pink-textarea active-pink-textarea">
+								<textarea id="description" name="description" class="md-textarea form-control" required></textarea>
+								<label for="description">Description</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Please enter the restaurant description here.</small>
+							</div>
+
+							<!-- Material background input -->
+							<div class="md-form md-bg">
+								<input type="time" id="open" class="form-control" required>
+								<label for="open" id="openLabel">Open at</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Please enter the restaurant open time here. The format should be looks like 00:00 am</small>
+							</div>
+
+							<!-- Material background input -->
+							<div class="md-form md-bg">
+								<input type="time" id="close" class="form-control" required>
+								<label for="close" id="closeLabel">Close at</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Please enter the restaurant close time here. The format should be looks like 00:00 am</small>
+							</div>
+
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="inputGroupFileAddon01">Restaurant image</span>
+								</div>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="inputGroupFile01"
+										aria-describedby="inputGroupFileAddon01" required>
+									<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-5">
+						<div class="col text-center">
+							<button type="submit" class="btn pink text-white">submit</button>
+							<button type="reset" class="btn pink text-white">reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+		$('#openLabel').css('transform', 'translateY(-3px) scale(.8)');
+		$('#closeLabel').css('transform', 'translateY(-3px) scale(.8)');
+
+		$.getJSON('/data/cuisines.json', (cuisines) => {
+			this.cuisineArray = cuisines;
+		});
+
+		let update = (str) => {
+			$(`#${str}-options`).empty();
+
+			let arr = this[str + 'Array'];
+
+			if (arr.length > 1){
+				arr.forEach(city => {
+					$(`#${str}-options`).append(`
+						<div class="autocomplete-option animate">${city.name}</div>
+					`);
+				});
+			}
+
+			$('.autocomplete-option').click(({currentTarget}) => {
+				let input = $(currentTarget.parentElement).siblings('input');
+				input.val($(currentTarget).text()).trigger('change');
+			});
+		}
+
+		['cuisine'].forEach((e) => {
+			$(`#${e}`).on({
+				focus: () => {
+					setTimeout(() => {
+						update(e);
+						$(`#${e}-options`).css('opacity', 1);
+						$(`#${e}-options`).css('pointer-events', 'auto');
+					}, 100);
+				},
+				blur: () => {
+					setTimeout(() => {
+						$(`#${e}-options`).css('opacity', 0);
+						$(`#${e}-options`).css('pointer-events', 'none');
+					}, 100);
+				},
+			});
+		});
+
+		$(document.form).submit((e) => {
+			e.preventDefault();
+			window.location.assign('./new_2.html');
+		})
+	</script>
+</body>
+
+</html>

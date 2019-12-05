@@ -1,0 +1,47 @@
+[{
+	"id": 1,
+	"title": "McDonald's Menu",
+	"restaurant_id": 1,
+	"is_enabled": true,
+	"is_special": false,
+	"image_url": "https://grainnorfolk.com/wp-content/uploads/GRAIN_0345_Lunch-Dinner-12.18-1_Page_1.jpg",
+	"from": "2019-10-15",
+	"to": "2019-10-15"
+}, {
+	"id": 2,
+	"title": "KFC Menu",
+	"restaurant_id": 2,
+	"is_enabled": false,
+	"is_special": true,
+	"image_url": "https://grainnorfolk.com/wp-content/uploads/GRAIN_0345_Lunch-Dinner-12.18-1_Page_1.jpg",
+	"from": "2019-10-14",
+	"to": "2019-12-16"
+}, {
+	"id": 3,
+	"title": "Pizza Hut Menu",
+	"restaurant_id": 3,
+	"is_enabled": true,
+	"is_special": false,
+	"image_url": "https://grainnorfolk.com/wp-content/uploads/GRAIN_0345_Lunch-Dinner-12.18-1_Page_1.jpg",
+	"from": "2019-10-15",
+	"to": "2019-10-15"
+}, {
+	"id": 4,
+	"title": "Pizza Hut Menu",
+	"restaurant_id": 3,
+	"is_enabled": true,
+	"is_special": true,
+	"image_url": "https://grainnorfolk.com/wp-content/uploads/GRAIN_0345_Lunch-Dinner-12.18-1_Page_1.jpg",
+	"from": "2019-10-15",
+	"to": "2029-10-15"
+}, {
+	"id": 5,
+	"title": "Pizza Hut Menu",
+	"restaurant_id": 3,
+	"is_enabled": false,
+	"is_special": false,
+	"image_url": "https://grainnorfolk.com/wp-content/uploads/GRAIN_0345_Lunch-Dinner-12.18-1_Page_1.jpg",
+	"from": "2019-10-15",
+	"to": "2019-10-15"
+}
+]

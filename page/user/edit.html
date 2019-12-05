@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+	</script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
+	</script>
+
+	<link rel="stylesheet" href="/style/page/register.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div id="main-pane" class="container-fluid">
+		<div class="row">
+			<div class="col-12 col-sm-6 col-lg-3 left-pane pink pt-5 pl-sm-5 text-white">
+
+				<div class="mt-5"></div>
+
+				<h1 class="display-4">Change Password</h1>
+
+				<hr>
+
+				<p>
+					Nulla aute aliquip velit Lorem esse ex consequat deserunt officia ullamco. Eiusmod duis ullamco culpa quis proident exercitation cupidatat qui minim. Culpa deserunt eiusmod ipsum consectetur officia. Laboris dolore dolor qui proident et ipsum cupidatat. Dolore anim qui in eiusmod.
+				</p>
+
+				<form name="form" action="#">
+					<!-- Medium input -->
+					<div class="md-form md-bg">
+						<input type="password" id="old-password" name="old-password" class="form-control text-white" max="32" required autofocus>
+						<label for="old-password">Old password</label>
+						<small style="color: rgba(255, 255, 255, 0.5)">Velit enim ullamco laboris mollit in laborum aute cillum consequat.</small>
+					</div>
+
+					<!-- Medium input -->
+					<div class="md-form md-bg">
+						<input type="password" id="new-password" name="new-password" class="form-control text-white" minlength="8" max="32" required>
+						<label for="new-password">New password</label>
+						<small style="color: rgba(255, 255, 255, 0.5)">Velit enim ullamco laboris mollit in laborum aute cillum consequat.</small>
+					</div>
+
+					<!-- Medium input -->
+					<div class="md-form md-bg">
+						<input type="password" id="password-confirm" name="password-confirm" class="form-control text-white" minlength="8" max="32" required>
+						<label for="password-confirm">Confirm password</label>
+						<small style="color: rgba(255, 255, 255, 0.5)">Aliquip aute ullamco reprehenderit nisi pariatur eiusmod.</small>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-12 col-sm-6 pb-3 pb-sm-0 pr-sm-1">
+							<button type="submit" class="btn shadow-none w-100 m-0" style="background-color: rgba(0, 0, 0, 0.1);">Change</button>
+						</div>
+						<div class="col-12 col-sm-6 pl-sm-1">
+							<button type="reset" class="btn shadow-none w-100 m-0" style="background-color: rgba(0, 0, 0, 0.1);">Reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="col p-0">
+				<img src="https://images.pexels.com/photos/2591276/pexels-photo-2591276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="w-100 h-100 position-absolute" style="z-index: -1; object-fit: cover;">
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="old-password-mismatch-dialog" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					Incorrect old password.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="new-password-mismatch-dialog" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					The password and confirm password is mismatch.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="success-dialog" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					The password has been successfully changed.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		const urlParams = new URLSearchParams(window.location.search);
+		const id = urlParams.get('id');
+
+		$.getJSON('/data/users.json', (users) => {
+			let user = users.filter(user => user.id == id)[0];
+
+			$(document.form).submit(e => {
+				e.preventDefault();
+
+				if ($('#old-password').val() !== user.password) {
+					$('#old-password-mismatch-dialog').modal('toggle');
+				} else if ($('#new-password').val() !== $('#password-confirm').val()) {
+					$('#new-password-mismatch-dialog').modal('toggle');
+				} else {
+					$('#success-dialog').modal('toggle');
+					setTimeout(() => {
+						window.history.back();
+					}, 1000);
+				}
+			})
+		})
+
+	</script>
+</body>
+
+</html>

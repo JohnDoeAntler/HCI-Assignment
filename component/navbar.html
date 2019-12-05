@@ -1,0 +1,178 @@
+<header>
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar">
+		<a class="navbar-brand" href="/"><strong>Yummy Everywhere</strong></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/page/restaurant/"><i class="fas fa-store"></i> Restaurant</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link operator-only" href="/page/order/"><i class="fab fa-jedi-order"></i> Order</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link admin-only" href="/page/user/"><i class="fas fa-users"></i> User</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav guest-only">
+				<li class="nav-item">
+					<a class="nav-link" href="/page/login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/page/register.html"><i class="fas fa-user-plus"></i> Sign up</a>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav member-only">
+				<li class="nav-item normal-only">
+					<a id="shopping-cart-btn" class="nav-link" data-toggle="modal" data-target="#shopping-cart"><i class="fas fa-shopping-cart"></i> Shopping Cart</a>
+				</li>
+				<li class="nav-item">
+					<a id="profile-link" class="nav-link" href="/page/user/show.html"><i class="fas fa-user"></i> Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#" onclick="Cookies.remove('id'); Cookies.remove('username'); Cookies.remove('role'); window.location.reload()"><i class="fas fa-sign-out-alt"></i> Log out</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</header>
+
+<!-- Modal -->
+<div class="modal fade" id="shopping-cart" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Shopping Cart</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+			</div>
+			<div class="modal-body">
+				<table id="shopping-cart-item-container" class="text-center table table-bordered table-hover table-striped table-editable">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Price</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+
+				<p>
+					Total price: <code id="shopping-cart-total"></code>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<a href="/page/order/checkout.html">
+					<button type="button" class="btn btn-primary">Checkout</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+
+<script>
+	$('#shopping-cart-btn').click(() => {
+		$.getJSON('/data/dishes.json', dishes => {
+			if (!!Cookies.get('cart')) {
+				let items = JSON.parse(Cookies.get('cart'));
+
+				items = items.map(item => {
+					return {
+						...item,
+						...dishes.filter(dish => dish.id == item.id)[0],
+					}
+				})
+
+				$('#shopping-cart-item-container>tbody').empty();
+
+				items.forEach(item => {
+					$('#shopping-cart-item-container>tbody').append(
+						CUq54JFGZWW2FYOjGIH(
+							item
+						)
+					);
+				});
+			}
+		})
+
+		setTimeout(() => {
+			updateTotal();
+		}, 100);
+	})
+
+	let updateTotal = () => {
+		let total = 0;
+		$.each($('#shopping-cart-item-container>tbody>tr'), (i, e) => {
+			total += parseFloat($(e).attr('price'));
+		}); 
+		$('#shopping-cart-total').text(`$${total.toFixed(2)}`);
+	}
+
+	let removeShoppingCartItem = (id) => {
+		let items = JSON.parse(Cookies.get('cart'));
+		items = items.filter(item => item.id != id);
+		Cookies.set('cart', JSON.stringify(items));
+	}
+
+	setInterval(() => {
+		if (Cookies.get('id')) {
+			$('.guest-only').css('display', 'none');
+
+			$.get('/data/users.json', users => {
+				let currentUser = users.filter(user => user.id == Cookies.get('id'))[0];
+
+				switch (currentUser.role) {
+					case 'normal':
+						$('.admin-only').css('display', 'none');
+						$('.operator-only').css('display', 'none');
+						break;
+					case 'operator':
+						$('.normal-only').css('display', 'none');
+						$('.admin-only').css('display', 'none');
+						break;
+					case 'admin':
+						$('.normal-only').css('display', 'none');
+						$('.operator-only').css('display', 'none');
+						break;
+				}
+			});
+
+			$('#profile-link').attr('href', '/page/user/show.html?id=' + Cookies.get('id'));
+
+			$(".readonly").on('keydown paste', function(e){
+				e.preventDefault();
+			});
+		} else {
+			$('.member-only').css('display', 'none');
+			$('.normal-only').css('display', 'none');
+			$('.admin-only').css('display', 'none');
+			$('.operator-only').css('display', 'none');
+		}
+	}, 100);
+
+	let CUq54JFGZWW2FYOjGIH = ({
+		id,
+		name,
+		price,
+		quantity,
+	}) => `
+		<tr id="cart-item-${id}" price="${price * quantity}">
+			<td scope="row">${name}</td>
+			<td>$ ${(price * quantity).toFixed(2)} (${quantity} x ${price})</td>
+			<td>
+				<span class="circle mx-2" style="cursor: pointer;" onclick="$('#cart-item-${id}').fadeOut(500, () => {$('#cart-item-${id}').remove(); updateTotal(); removeShoppingCartItem(${id})})">
+					<i class="fas fa-trash-alt"></i>
+				</span>
+			</td>
+		</tr>
+	`;
+</script>

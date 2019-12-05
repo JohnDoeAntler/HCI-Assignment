@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	
+		<!-- Bootstrap core CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+	
+		<!-- JQuery -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+		<!-- Bootstrap tooltips -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	
+		<!-- Bootstrap core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+		<!-- auto complete -->
+		<link rel="stylesheet" href="/style/autocomplete.css">
+	</head>
+	<body>
+		<div id="navbar"></div>
+
+		<div class="container my-5 pt-5">
+			<div class="row">
+				<div class="col">
+					<h1 class="display-1">Users Table</h1>
+
+					<hr>
+
+					<p>
+						Aliqua ut occaecat nostrud enim et. Tempor proident commodo occaecat dolore magna ut esse qui sunt magna ullamco veniam. Aliqua ut magna voluptate velit. Velit adipisicing sint ullamco anim dolor esse ad elit ipsum ex nulla.
+					</p>
+					
+					<a href="/page/user/new.html">
+						<button type="button" class="btn pink text-white mx-0">Create User</button>
+					</a>
+
+					<!-- Material background input -->
+					<div class="md-form md-bg">
+						<input type="text" id="search" class="form-control" required autofocus>
+						<label for="search">Search</label>
+						<small style="color: rgba(0, 0, 0, 0.5)">Nisi Lorem sint ullamco commodo ad ad commodo
+							veniam.</small>
+					</div>
+
+					<table id="users" class="text-center table table-bordered table-hover table-striped table-editable">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Username</th>
+								<th>Role</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer"></div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Edit Profile</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col">
+								<div class="md-form md-bg mt-2">
+									<input type="text" id="role" class="form-control readonly" required>
+									<label for="role">Role</label>
+									<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+										enim dolor.</small>
+									<div id="role-options" class="option-wrapper animate"></div>
+								</div>
+
+								<input type="hidden" id="id" name="id">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button onclick="save()" type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$('#navbar').load('/component/navbar.html');
+			$('#footer').load('/component/footer.html');
+
+			$.getJSON('/data/users.json', users => {
+				let update = () => {
+					$('#users>tbody').empty();
+
+					users.filter(user => Object.values(user).join().toLowerCase().includes($('#search').val())).forEach(user => {
+						$('#users>tbody').append(
+							li(
+								user
+							)
+						);
+					});
+				}
+
+				update();
+
+				$('#search').keyup(() => {
+					update()
+				});
+			});
+
+
+			let li = ({
+				id,
+				username,
+				role
+			}) => `
+				<tr id="tr-${id}">
+					<td scope="row">${id}</td>
+					<td>${username}</td>
+					<td id="tr-${id}-role">${role}</td>
+					<td>
+						<a href="/page/user/show.html?id=${id}">
+							<span class="circle mx-2" style="cursor: pointer;">
+								<i class="fas fa-eye"></i>
+							</span>
+						</a>
+						<span onclick="modify(${id})" class="circle mx-2" style="cursor: pointer;" data-toggle="modal" data-target="#edit-modal">
+							<i class="fas fa-edit"></i>
+						</span>
+						<span class="circle mx-2" style="cursor: pointer;" onclick="$('#tr-${id}').fadeOut(500, () => $('#tr-${id}').remove())">
+							<i class="fas fa-trash-alt"></i>
+						</span>
+					</td>
+				</tr>
+			`;
+
+			let modify = (id) => {
+				$('#id').val(id);
+				$('#role').val($(`#tr-${id}-role`).text()).trigger('change');
+			}
+
+			let save = () => {
+				$(`#tr-${$('#id').val()}-role`).text($('#role').val());
+				$('#edit-modal').modal('toggle')
+			}
+
+			this.roleArray = [
+				'normal',
+				'admin',
+				'operator',
+			];
+
+			let update = (str) => {
+				$(`#${str}-options`).empty();
+
+				let arr = this[str + 'Array'];
+
+				if (arr.length > 1){
+					arr.forEach(city => {
+						$(`#${str}-options`).append(`
+							<div class="autocomplete-option animate">${city}</div>
+						`);
+					});
+				}
+
+				$('.autocomplete-option').click(({currentTarget}) => {
+					let input = $(currentTarget.parentElement).siblings('input');
+					input.val($(currentTarget).text()).trigger('change');
+				});
+			}
+
+			['role'].forEach((e) => {
+				$(`#${e}`).on({
+					focus: () => {
+						setTimeout(() => {
+							update(e);
+							$(`#${e}-options`).css('opacity', 1);
+							$(`#${e}-options`).css('pointer-events', 'auto');
+						}, 100);
+					},
+					blur: () => {
+						setTimeout(() => {
+							$(`#${e}-options`).css('opacity', 0);
+							$(`#${e}-options`).css('pointer-events', 'none');
+						}, 100);
+					},
+				});
+			});
+		</script>
+	</body>
+</html>

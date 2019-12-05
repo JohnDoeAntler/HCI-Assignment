@@ -1,0 +1,36 @@
+[
+	{
+		"id": 1,
+		"orderer_id": 1,
+		"area_id": 1,
+		"address": "v682, Corona Lane, Green Cove Springs, FL 32043",
+		"status": "completed",
+		"dishes": [
+			{
+				"id": 1,
+				"quantity": 5
+			},
+			{
+				"id": 4,
+				"quantity": 5
+			}
+		]
+	},
+	{
+		"id": 2,
+		"orderer_id": 2,
+		"area_id": 7,
+		"address": "56 Snake Hill St.Huntington Station, NY 11746",
+		"status": "uncompleted",
+		"dishes": [
+			{
+				"id": 9,
+				"quantity": 5
+			},
+			{
+				"id": 5,
+				"quantity": 5
+			}
+		]
+	}
+]

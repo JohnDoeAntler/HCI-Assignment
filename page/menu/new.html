@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+	</script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
+	</script>
+
+	<!-- auto complete -->
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div class="container my-5 mt-5">
+		<div class="row pt-5">
+			<div class="col">
+				<h1 class="display-1">Create Restaurant</h1>
+				<hr>
+				<p>
+					Aute dolore do aliquip irure proident. Ut consequat anim in consequat sunt dolor ea fugiat amet.
+					Anim eu cupidatat irure ad sit exercitation est laboris ullamco. Mollit elit laborum cillum fugiat
+					id. Irure voluptate labore ad culpa esse aliquip.
+				</p>
+
+				<form name="menuForm" action="#">
+					<div class="row">
+						<div class="col">
+							<!-- Material background input -->
+							<div class="md-form md-bg">
+								<input type="text" id="name" class="form-control" required autofocus>
+								<label for="name">Menu name</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+									enim dolor.</small>
+							</div>
+
+							<div class="custom-control custom-switch my-3">
+								<input type="checkbox" class="custom-control-input" name="isEnabled" id="isEnabled">
+								<label class="custom-control-label" for="isEnabled">Is enabled</label>
+							</div>
+
+							<div class="custom-control custom-switch my-3">
+								<input type="checkbox" class="custom-control-input" name="isSpecial" id="isSpecial">
+								<label class="custom-control-label" for="isSpecial">Is special</label>
+							</div>
+
+							<div class="md-form md-bg">
+								<input type="text" id="from" class="form-control datePicker readonly" required>
+								<label for="from">Available from</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Dolor tempor in sint commodo ipsum nisi labore
+									laboris aute sit ea occaecat.</small>
+							</div>
+
+							<div class="md-form md-bg">
+								<input type="text" id="to" class="form-control datePicker readonly" required>
+								<label for="to">Available to</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Dolor tempor in sint commodo ipsum nisi labore
+									laboris aute sit ea occaecat.</small>
+							</div>
+
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="inputGroupFileAddon01">Menu image</span>
+								</div>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="image" required>
+									<label class="custom-file-label" for="image">Choose file</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col border-left mt-3">
+							<button type="button" class="btn pink text-white w-100 m-0 my-2" data-toggle="modal"
+								data-target="#modal">Add dish</button>
+
+							<table id="dishes"
+								class="text-center table table-bordered table-hover table-striped table-editable">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Dish name</th>
+										<th>Dish price</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row mt-5">
+						<div class="col text-center">
+							<button id="submitMenuBtn" type="button" class="btn pink text-white">submit</button>
+							<button type="reset" class="btn pink text-white"
+								onclick="$('#dishes>tbody>tr').fadeOut(500, () => $('#dishes>tbody>tr').remove());">reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Dish</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<form name="dishForm" action="#">
+								<div class="md-form md-bg mt-0">
+									<input type="text" name="dishName" id="dishName" class="form-control" required>
+									<label for="dishName">Dish name</label>
+									<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non
+										mollit enim dolor.</small>
+								</div>
+
+								<div class="md-form md-bg">
+									<input type="number" name="dishPrice" id="dishPrice" class="form-control" step="any" required>
+									<label for="dishPrice">Dish price</label>
+									<small style="color: rgba(0, 0, 0, 0.5)">Nisi mollit Lorem in pariatur ex.</small>
+								</div>
+
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroupFileAddon01">Dish image</span>
+									</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="inputGroupFile01"
+											aria-describedby="inputGroupFileAddon01" required>
+										<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn text-white pink" data-dismiss="modal">Close</button>
+					<button id="addDishBtn" type="button" class="btn text-white pink">Add</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Error</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					It is not permitted to add a menu without dishes.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Success</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					The menu has been successfully added.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<link rel="stylesheet" href="/style/datePicker.css">
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+	<script src="/script/datePicker.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		$('#addDishBtn').click(() => {
+			if (document.dishForm.reportValidity()) {
+				let id = $('#dishes>tbody>tr').length + 1;
+				$('#dishes>tbody').append(`
+					<tr id="tr-${id}">
+						<th scope="row">${id}</th>
+						<td>${$('#dishName').val()}</td>
+						<td>$ ${parseInt($('#dishPrice').val()).toFixed(2)}</td>
+						<td>
+							<span class="circle" style="cursor: pointer;" onclick="$('#tr-${id}').fadeOut(500, () => $('#tr-${id}').remove())">
+								<i class="fas fa-trash-alt"></i>
+							</span>
+						</td>
+					</tr>
+				`);
+				$('#modal').modal('toggle');
+			}
+		});
+
+
+		$('#submitMenuBtn').click(() => {
+			if (!$('#dishes>tbody>tr').length) {
+				$('#dialog').modal('toggle');
+			} else {
+				if (document.menuForm.reportValidity()) {
+					$('#success-modal').modal('toggle');
+
+					setTimeout(() => {
+						window.history.back();
+					}, 1000);
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

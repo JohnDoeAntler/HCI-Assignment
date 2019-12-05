@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+	</script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
+	</script>
+
+	<!-- auto complete -->
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div class="container my-5 mt-5">
+		<div class="row pt-5">
+			<div class="col">
+				<h1 class="display-1">View Menu</h1>
+				<hr>
+				<p>
+					Aute dolore do aliquip irure proident. Ut consequat anim in consequat sunt dolor ea fugiat amet.
+					Anim eu cupidatat irure ad sit exercitation est laboris ullamco. Mollit elit laborum cillum fugiat
+					id. Irure voluptate labore ad culpa esse aliquip.
+				</p>
+
+				<button type="button" class="btn pink text-white m-0 w-100 my-2" data-toggle="modal" data-target="#image-modal">View menu image</button>
+
+				<form name="menuForm" action="#">
+					<div class="row">
+						<div class="col">
+							<!-- Material background input -->
+							<div class="md-form md-bg">
+								<input type="text" id="name" class="form-control" readonly>
+								<label for="name">Menu name</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+									enim dolor.</small>
+							</div>
+
+							<div class="custom-control custom-switch my-3">
+								<input type="checkbox" class="custom-control-input" name="isEnabled" id="isEnabled" onclick="return false;">
+								<label class="custom-control-label" for="isEnabled">Is enabled</label>
+							</div>
+
+							<div class="custom-control custom-switch my-3">
+								<input type="checkbox" class="custom-control-input" name="isSpecial" id="isSpecial" onclick="return false;">
+								<label class="custom-control-label" for="isSpecial">Is special</label>
+							</div>
+
+							<div class="md-form md-bg">
+								<input type="text" id="from" class="form-control datePicker readonly" required readonly>
+								<label for="from">Available from</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Dolor tempor in sint commodo ipsum nisi labore
+									laboris aute sit ea occaecat.</small>
+							</div>
+
+							<div class="md-form md-bg">
+								<input type="text" id="to" class="form-control datePicker readonly" required readonly>
+								<label for="to">Available to</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Dolor tempor in sint commodo ipsum nisi labore
+									laboris aute sit ea occaecat.</small>
+							</div>
+						</div>
+
+						<div class="col border-left mt-3">
+							<table id="dishes"
+								class="text-center table table-bordered table-hover table-striped table-editable">
+								<thead>
+									<tr>
+										<th>Dish name</th>
+										<th>Dish price</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Cart</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<form name="form" action="#">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col">
+								<div class="md-form md-bg mt-0">
+									<input type="text" name="price" id="price" class="form-control" step="any" readonly>
+									<label for="price">Price</label>
+									<small style="color: rgba(0, 0, 0, 0.5)">Nisi mollit Lorem in pariatur ex.</small>
+								</div>
+
+								<div class="md-form md-bg mt-0">
+									<input type="number" name="amount" id="amount" class="form-control" min="1" value="1" required>
+									<label for="amount">Amount</label>
+									<small style="color: rgba(0, 0, 0, 0.5)">Nisi mollit Lorem in pariatur ex.</small>
+								</div>
+
+								<input type="hidden" name="price-val" id="price-val">
+								<input type="hidden" name="id" id="id">
+
+								<p>
+									Total price: <code id="total">$12.0</code>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Add to cart</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="image-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Image</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<img id="image" class="w-100" src="" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="dish-image-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<img id="dish-image" class="w-100 h-100">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+		const id = urlParams.get('id');
+
+		$.getJSON('/data/menus.json', menus => {
+			$.getJSON('/data/dishes.json', dishes => {
+				// find unique menu by primary key
+				let menu = menus.filter(menu => menu.id == id)[0];
+				// find dishes with specified menu id
+				dishes = dishes.filter(dish => dish.menu_id == id);
+
+				$('#name').val(menu.title).trigger('change');
+				$('#isEnabled')[0].checked = (menu.is_enabled);
+				$('#isSpecial')[0].checked = (menu.is_special);
+				$('#from').val(moment(Date.parse(menu.from)).format('MM/DD/YYYY')).trigger('change');
+				$('#to').val(moment(Date.parse(menu.to)).format('MM/DD/YYYY')).trigger('change');
+
+				dishes.forEach(dish => {
+					$('#dishes>tbody').append(`
+						<tr id="tr-${dish.id}">
+							<td>${dish.name}</td>
+							<td>$ ${dish.price.toFixed(2)}</td>
+							<td>
+								<span class="circle" style="cursor: pointer;" data-toggle="modal" data-target="#dish-image-modal" onclick="viewDishImage(${dish.id})">
+									<i class="fas fa-eye"></i>
+								</span>
+								<span class="circle" style="cursor: pointer;" data-toggle="modal" data-target="#modal" onclick="addCart(${dish.id})">
+									<i class="fas fa-cart-plus"></i>
+								</span>
+							</td>
+						</tr>
+					`);
+				});
+
+				this.dishes = dishes;
+
+				$('#amount').on({
+					change: () => {
+						let price = parseFloat($('#price-val').val());
+						let amount = parseInt($('#amount').val());
+						$('#total').text('$' + (amount * price).toFixed(2));
+					},
+					keyup: () => {
+						let price = parseFloat($('#price-val').val());
+						let amount = parseInt($('#amount').val());
+						$('#total').text('$' + (amount * price).toFixed(2));
+					}
+				});
+
+				$('#image').attr('src', menu.image_url);
+
+				$(document.form).submit(e => {
+					e.preventDefault();
+
+					if (!!!Cookies.get('cart')) {
+						let set = [];
+						set.push({
+							id: parseInt($('#id').val()),
+							quantity: parseInt($('#amount').val())
+						});
+						Cookies.set('cart', JSON.stringify(set));
+					} else {
+						let set = JSON.parse(Cookies.get('cart'));
+						let item = set.filter(x => x.id == $('#id').val());
+						if (item.length == 0) {
+							set.push({
+								id: parseInt($('#id').val()),
+								quantity: parseInt($('#amount').val())
+							});
+						} else {
+							set[set.indexOf(item[0])].quantity += parseInt($('#amount').val());
+						}
+						Cookies.set('cart', JSON.stringify(set));
+					}
+				})
+			});
+		});
+
+		let addCart = (id) => {
+			let dish = this.dishes.filter(dish => dish.id == id)[0];
+			$('#price-val').val(dish.price);
+			$('#amount').trigger('change');
+			$('#price').val(`$ ${dish.price.toFixed(2)}`).trigger('change');
+			$('#total').val('$' + dish.price * parseInt($('#amount')));
+			$('#id').val(id);
+		}
+
+		let viewDishImage = (id) => {
+			$('#dish-image').attr('src', this.dishes.find(dish => dish.id == id).image_url);
+		}
+
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		$(".readonly").on('keydown paste', function(e){
+			e.preventDefault();
+		});
+
+		$('#submitMenuBtn').click(() => {
+			if (!$('#dishes>tbody>tr').length) {
+				$('#dialog').modal('toggle');
+			} else {
+				if (document.menuForm.reportValidity()) {
+					$('#success-modal').modal('toggle');
+
+					setTimeout(() => {
+						window.history.back();
+					}, 1000);
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

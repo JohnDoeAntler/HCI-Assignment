@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	
+		<!-- Bootstrap core CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+	
+		<!-- JQuery -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+		<!-- Bootstrap tooltips -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	
+		<!-- Bootstrap core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+	</head>
+	<body>
+		<div id="navbar"></div>
+
+		<div class="container-fluid w-100 vh-100 position-absolute pink">
+			<div class="row p-0">
+				<div class="col-12 p-0">
+					<img style="width: 100%; height: 100vh; object-fit: cover; opacity: .25;" src="https://images.pexels.com/photos/1126728/pexels-photo-1126728.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+				</div>
+			</div>
+		</div>
+
+		<div class="container d-flex vh-100">
+			<div class="row m-auto w-100">
+				<div class="col text-white text-center">
+					<h1 class="display-1 font-weight-bold">Yummy Everywhere</h1>
+
+					<hr>
+
+					<p class="font-weight-normal">
+						Lorem aute reprehenderit voluptate eiusmod reprehenderit sint Lorem minim magna officia. Lorem aliqua sunt eiusmod magna laborum reprehenderit consequat qui et irure est. Ipsum minim incididunt do commodo do ut incididunt. Proident anim culpa sint reprehenderit sunt ut nulla non magna aliquip proident eu excepteur nostrud. Reprehenderit anim ad dolore ut irure quis. Ullamco aute voluptate ad veniam ad aliquip excepteur ipsum eiusmod. Magna elit mollit elit consequat aliqua occaecat ipsum consequat excepteur labore nulla ea.
+					</p>
+
+					<a href="/page/restaurant/">
+						<button type="button" class="btn pink text-white">Get Started</button>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer"></div>
+
+		<script>
+			$('#navbar').load('/component/navbar.html');
+			$('#footer').load('/component/footer.html');
+		</script>
+	</body>
+</html>

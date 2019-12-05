@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+	</script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
+	</script>
+
+	<link rel="stylesheet" href="/style/page/register.css">
+
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div id="main-pane" class="container-fluid">
+		<div class="row">
+			<div class="col-12 col-sm-6 col-lg-3 left-pane pink pt-5 pl-sm-5 text-white">
+
+				<div class="mt-5"></div>
+
+				<h1 class="display-4">Create user</h1>
+
+				<hr>
+
+				<p>
+					Nulla aute aliquip velit Lorem esse ex consequat deserunt officia ullamco. Eiusmod duis ullamco culpa quis proident exercitation cupidatat qui minim. Culpa deserunt eiusmod ipsum consectetur officia. Laboris dolore dolor qui proident et ipsum cupidatat. Dolore anim qui in eiusmod.
+				</p>
+
+				<form name="form" action="#">
+					<!-- Medium input -->
+					<div class="md-form md-bg">
+						<input type="text" id="username" name="username" class="form-control text-white" minlength="8" max="32" required autofocus>
+						<label for="username">Username</label>
+						<small style="color: rgba(255, 255, 255, 0.5)">Duis nisi sint dolor sunt consequat incididunt dolor cillum.</small>
+					</div>
+
+					<!-- Medium input -->
+					<div class="md-form md-bg">
+						<input type="password" id="password" name="password" class="form-control text-white" minlength="8" max="32" required>
+						<label for="password">Password</label>
+						<small style="color: rgba(255, 255, 255, 0.5)">Velit enim ullamco laboris mollit in laborum aute cillum consequat.</small>
+					</div>
+
+					<!-- Medium input -->
+					<div class="md-form md-bg">
+						<input type="password" id="password-confirm" name="password-confirm" class="form-control text-white" minlength="8" max="32" required>
+						<label for="password-confirm">Confirm password</label>
+						<small style="color: rgba(255, 255, 255, 0.5)">Aliquip aute ullamco reprehenderit nisi pariatur eiusmod.</small>
+					</div>
+
+					<div class="md-form md-bg mt-2">
+						<input type="text" id="role" class="form-control readonly text-white" required>
+						<label for="role">Role</label>
+						<small style="color: rgba(255, 255, 255, 0.5)">Eu voluptate laboris cillum irure do non mollit
+							enim dolor.</small>
+						<div id="role-options" class="option-wrapper animate"></div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-12 col-sm-6 pb-3 pb-sm-0 pr-sm-1">
+							<button type="submit" class="btn shadow-none w-100 m-0" style="background-color: rgba(0, 0, 0, 0.1);">Create user</button>
+						</div>
+						<div class="col-12 col-sm-6 pl-sm-1">
+							<button type="reset" class="btn shadow-none w-100 m-0" style="background-color: rgba(0, 0, 0, 0.1);">Reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="col p-0">
+				<img src="https://images.pexels.com/photos/3098796/pexels-photo-3098796.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="w-100 h-100 position-absolute" style="z-index: -1; object-fit: cover;">
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Success</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					Successfully created an account.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.assign('/page/login.html')">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Error</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					Password and confirm password is mismatch.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		$(document.form).submit(e => {
+			e.preventDefault();
+
+			if ($('#password').val() !== $('#password-confirm').val()) {
+				$('#error-modal').modal('toggle');
+			} else {
+				$('#success-modal').modal('toggle');
+			}
+		});
+
+			this.roleArray = [
+				'normal',
+				'admin',
+				'operator',
+			];
+
+			let update = (str) => {
+				$(`#${str}-options`).empty();
+
+				let arr = this[str + 'Array'];
+
+				if (arr.length > 1){
+					arr.forEach(city => {
+						$(`#${str}-options`).append(`
+							<div class="autocomplete-option animate">${city}</div>
+						`);
+					});
+				}
+
+				$('.autocomplete-option').click(({currentTarget}) => {
+					let input = $(currentTarget.parentElement).siblings('input');
+					input.val($(currentTarget).text()).trigger('change');
+				});
+			}
+
+			['role'].forEach((e) => {
+				$(`#${e}`).on({
+					focus: () => {
+						setTimeout(() => {
+							update(e);
+							$(`#${e}-options`).css('opacity', 1);
+							$(`#${e}-options`).css('pointer-events', 'auto');
+						}, 100);
+					},
+					blur: () => {
+						setTimeout(() => {
+							$(`#${e}-options`).css('opacity', 0);
+							$(`#${e}-options`).css('pointer-events', 'none');
+						}, 100);
+					},
+				});
+			});
+	</script>
+</body>
+
+</html>

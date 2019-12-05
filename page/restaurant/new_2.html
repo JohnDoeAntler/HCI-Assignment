@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+	<!-- auto complete -->
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div class="container my-5 mt-5">
+		<div class="row pt-5">
+			<div class="col">
+				<h1 class="display-1">Create Restaurant</h1>
+				<hr>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, architecto. Tenetur cumque ab
+					voluptates aspernatur ex repellendus magni ut, vero unde maxime veniam necessitatibus sint debitis
+					voluptate accusamus sit id!
+				</p>
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Stepers Wrapper -->
+						<ul class="stepper stepper-horizontal">
+
+							<!-- First Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Submit information</span>
+								</a>
+							</li>
+
+							<!-- Second Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-pen"></i></span>
+									<span class="label">Submit branches</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-clipboard-list"></i></span>
+									<span class="label">Submit menus</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-clipboard-list"></i></span>
+									<span class="label">Complete</span>
+								</a>
+							</li>
+						</ul>
+						<!-- /.Stepers Wrapper -->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col">
+						<table id="branches" class="text-center table table-bordered table-hover table-striped table-editable">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Branch city</th>
+									<th>Branch area</th>
+									<th>Branch address</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<form name="form" action="#">
+					<div class="row">
+						<div class="col">
+							<div class="md-form md-bg mt-2">
+								<input type="text" id="city" class="form-control readonly" required>
+								<label for="city">City</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+									enim dolor.</small>
+								<div id="city-options" class="option-wrapper animate"></div>
+							</div>
+
+							<div class="md-form md-bg">
+								<input type="text" id="area" class="form-control readonly" required>
+								<label for="area">Area</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Ex id duis dolor ea fugiat in velit excepteur enim esse.</small>
+								<div id="area-options" class="option-wrapper animate"></div>
+							</div>
+
+							<div class="md-form md-bg pink-textarea active-pink-textarea">
+								<textarea id="address" name="address" class="md-textarea form-control" required></textarea>
+								<label for="address">Address</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Pariatur veniam velit ad qui sint esse Lorem.</small>
+							</div>
+
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="inputGroupFileAddon01">Branch image</span>
+								</div>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="inputGroupFile01"
+										aria-describedby="inputGroupFileAddon01" required>
+									<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-5">
+						<div class="col text-center">
+							<button id="addBranchBtn" type="button" class="btn pink text-white">Add Branch</button>
+							<button id="submitBtn" type="button" class="btn pink text-white">submit</button>
+							<button type="reset" class="btn pink text-white"
+								onclick="$('#dishes>tbody>tr').fadeOut(500, () => $('#dishes>tbody>tr').remove());">reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		$('#addBranchBtn').click(() => {
+			if (document.form.reportValidity()) {
+				let id = $('#branches>tbody>tr').length + 1;
+				$('#branches>tbody').append(`
+					<tr id="tr-${id}">
+						<td>${id}</td>
+						<td>${$('#city').val()}</td>
+						<td>${$('#area').val()}</td>
+						<td>${$('#address').val()}</td>
+						<td>
+							<span class="circle" style="cursor: pointer;" onclick="$('#tr-${id}').fadeOut(500, () => $('#tr-${id}').remove())">
+								<i class="fas fa-trash-alt"></i>
+							</span>
+						</td>
+					</tr>
+				`);
+			}
+		});
+
+		$('#submitBtn').click(() => {
+			if ($('#branches>tbody>tr').length > 0) {
+				window.location.assign('./new_3.html');
+			} else {
+				window.alert('It is not permitted that submitting no branch.');
+			}
+		});
+
+		$.getJSON('/data/cities.json', (cities) => {
+			this.cityArray = cities;
+		});
+
+		$.getJSON('/data/areas.json', (areas) => {
+			this.areaArray = areas;
+		});
+
+		let update = (str) => {
+			$(`#${str}-options`).empty();
+
+			let arr = this[str + 'Array'];
+
+			if (arr.length > 1) {
+				arr.forEach(city => {
+					$(`#${str}-options`).append(`
+						<div class="autocomplete-option animate">${city.name}</div>
+					`);
+				});
+			}
+
+			$('.autocomplete-option').click(({currentTarget}) => {
+				let input = $(currentTarget.parentElement).siblings('input');
+				input.val($(currentTarget).text()).trigger('change');
+			});
+		}
+
+		['city', 'area'].forEach((e) => {
+			$(`#${e}`).on({
+				focus: () => {
+					setTimeout(() => {
+						update(e);
+						$(`#${e}-options`).css('opacity', 1);
+						$(`#${e}-options`).css('pointer-events', 'auto');
+					}, 100);
+				},
+				blur: () => {
+					setTimeout(() => {
+						$(`#${e}-options`).css('opacity', 0);
+						$(`#${e}-options`).css('pointer-events', 'none');
+					}, 100);
+				},
+			});
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+	</script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
+	</script>
+
+	<link rel="stylesheet" href="/style/page/restaurant/show.css">
+
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<img class="position-absolute w-100 vh-100" style="object-fit: cover;" src="">
+
+	<div id="top-pane" class="container-fluid">
+		<div class="row">
+			<div class="col px-0">
+				<img class="restaurant-img w-100 d-xs-none d-sm-none d-lg-none" style="object-fit: cover">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-sm-6 col-lg-3 vh-100 pink text-white pt-5 pl-sm-5 left-pane">
+				<div class="m-5"></div>
+
+				<h1 id="name" class="display-4"></h1>
+
+				<hr>
+
+				<p id="description"></p>
+
+				<hr>
+
+				<div class="row">
+					<div class="col px-3">
+						<div class="progress pink darken-3 mb-3" style="height: 2px;">
+							<div id="like-ratio" class="progress-bar pink lighten-3 animate" role="progressbar"
+								style="width: 75%"></div>
+						</div>
+						<span>
+							<div id="like-btn" class="btn pink darken-2 btn-circle shadow-none m-0">
+								<i class="far fa-thumbs-up"></i>
+							</div>
+							<span id="like-label">Like ()</span>
+						</span>
+						<span style="float: right;">
+							<div id="dislike-btn" class="btn pink darken-2 btn-circle shadow-none m-0">
+								<i class="far fa-thumbs-down"></i>
+							</div>
+							<span id="dislike-label">Dislike ()</span>
+						</span>
+					</div>
+				</div>
+
+				<hr>
+
+				<div class="row">
+					<div class="col px-3">
+						<div id="favorite-btn" class="btn pink darken-2 btn-circle shadow-none m-0">
+							<i class="far fa-star"></i>
+						</div>
+						<span id="favorite-label">Favorite ()</span>
+					</div>
+				</div>
+
+				<hr>
+
+				<p>
+					<i class="fas fa-phone mr-3"></i> <span id="phone"></span>
+				</p>
+
+				<hr>
+
+				<p>
+					<i class="fas fa-envelope mr-3"></i> <span id="email"></span>
+				</p>
+
+				<hr>
+
+				<p>
+					<i class="fas fa-clock mr-3"></i> <span id="time"></span>
+				</p>
+
+				<hr>
+
+				<ul class="option-pane pl-0">
+					<li class="option animate py-1" onclick="$('#branch-pane')[0].scrollIntoView({ block: 'center',  behavior: 'smooth' });">
+						<i class="fas fa-code-branch mr-3"></i>
+						Branch
+					</li>
+					<li class="option animate py-1 member-only" onclick="$('#menu-pane')[0].scrollIntoView({ block: 'center',  behavior: 'smooth' });">
+						<i class="fas fa-list mr-3"></i>
+						Menu
+					</li>
+					<li class="option animate py-1" onclick="$('#comment-pane')[0].scrollIntoView({ block: 'center',  behavior: 'smooth' });">
+						<i class="fas fa-comment mr-3"></i>
+						Comment
+					</li>
+				</ul>
+
+				<div id="footer-pane" class="position-absolute w-100" style="bottom: 0">
+				</div>
+			</div>
+
+			<div class="col p-0">
+				<img class="w-100 h-100 restaurant-img" style="object-fit: cover; z-index: -1;">
+			</div>
+		</div>
+	</div>
+
+	<div id="branch-pane" class="blue pt-5 text-white">
+		<div class="container pt-5">
+			<div class="row py-5">
+				<div class="col">
+					<div class="d-block">
+						<h1 class="display-4 d-inline">Branch</h1>
+						<a href="/page/branch/new.html">
+						<button type="button" class="owner-only btn mx-0 float-right shadow-none mt-auto text-white" style="background-color: rgba(0, 0, 0, 0.1);">
+							Add branch
+						</button>
+						</a>
+					</div>
+
+					<hr>
+
+					<p>
+						Velit laboris ipsum minim aute sunt ullamco. Enim tempor ad ut pariatur dolore commodo. Commodo
+						et qui eiusmod exercitation elit occaecat magna officia adipisicing id. Est exercitation id ea
+						consequat laborum ea est excepteur duis aliquip ex commodo.
+					</p>
+
+					<div id="branch-container" class="row mt-4"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="menu-pane" class="pink text-white pt-5 member-only">
+		<div class="container pt-5">
+			<div class="row py-5">
+				<div class="col">
+					<div class="d-block">
+						<h1 class="display-4 d-inline">Menus</h1>
+						<a href="/page/menu/new.html">
+							<button type="button" class="btn mx-0 owner-only float-right shadow-none mt-auto text-white" style="background-color: rgba(0, 0, 0, 0.1);">
+								Add menu
+							</button>
+						</a>
+					</div>
+
+					<hr>
+
+					<p>
+						Commodo ullamco voluptate et do minim id. Excepteur sunt culpa nulla et officia amet eiusmod
+						proident proident eiusmod duis quis. Tempor enim labore nisi quis ea tempor minim fugiat aliqua.
+					</p>
+
+					<div id="menu-container" class="row mt-4"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="comment-pane" class="amber darken-2 text-white py-5">
+		<div class="container py-5">
+			<div class="row py-5">
+				<div class="col">
+					<div>
+						<h1 class="display-4 d-inline">Comments</h1>
+						<button type="button" class="btn pink float-right normal-only" data-toggle="modal" data-target="#comment-modal">
+							<i class="fas fa-comment-medical"></i>
+							Add Comment
+						</button>
+					</div>
+
+					<hr>
+
+					<p>
+						Occaecat amet consectetur consequat ipsum ipsum anim anim cupidatat. Ut magna eiusmod officia
+						adipisicing dolor ex irure elit dolor dolore ullamco. Duis deserunt do dolore ipsum velit dolore
+						nulla consectetur commodo. Et id excepteur magna tempor tempor aute excepteur quis id incididunt
+						veniam consectetur.
+					</p>
+
+
+					<div id="comment-container">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="view-branch-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Branch Info</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<div class="md-form md-bg mt-0">
+								<input type="text" id="view-city" class="form-control" disabled>
+								<label for="view-city">City</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+									enim dolor.</small>
+								<div id="city-options" class="option-wrapper animate"></div>
+							</div>
+
+							<div class="md-form md-bg">
+								<input type="text" id="view-area" class="form-control" disabled>
+								<label for="view-area">Area</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Ex id duis dolor ea fugiat in velit excepteur enim esse.</small>
+								<div id="area-options" class="option-wrapper animate"></div>
+							</div>
+
+							<div class="md-form md-bg pink-textarea active-pink-textarea">
+								<textarea id="view-address" name="view-address" class="md-textarea form-control" disabled></textarea>
+								<label for="view-address">Address</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Pariatur veniam velit ad qui sint esse Lorem.</small>
+							</div>
+
+							<div id="map" style="height: 200px"></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="branch-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form name="form" action="#">
+					<div class="modal-header">
+						<h5 class="modal-title">Modify Branch</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col">
+								<div class="md-form md-bg mt-0">
+									<input type="text" id="city" class="form-control" required>
+									<label for="city">City</label>
+									<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+										enim dolor.</small>
+									<div id="city-options" class="option-wrapper animate"></div>
+								</div>
+
+								<div class="md-form md-bg">
+									<input type="text" id="area" class="form-control" required>
+									<label for="area">Area</label>
+									<small style="color: rgba(0, 0, 0, 0.5)">Ex id duis dolor ea fugiat in velit excepteur enim esse.</small>
+									<div id="area-options" class="option-wrapper animate"></div>
+								</div>
+
+								<div class="md-form md-bg pink-textarea active-pink-textarea">
+									<textarea id="address" name="address" class="md-textarea form-control" required></textarea>
+									<label for="address">Address</label>
+									<small style="color: rgba(0, 0, 0, 0.5)">Pariatur veniam velit ad qui sint esse Lorem.</small>
+								</div>
+
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroupFileAddon01">Branch image</span>
+									</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="inputGroupFile01"
+											aria-describedby="inputGroupFileAddon01" required>
+										<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+									</div>
+								</div>
+
+								<input type="hidden" name="branch-id" id="branch-id">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Modify</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Comment</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<div class="md-form m-0 md-bg pink-textarea active-pink-textarea">
+								<textarea id="cm-content" name="cm-content" class="md-textarea form-control"
+									required></textarea>
+								<label for="cm-content">Content</label>
+								<small style="color: rgba(0, 0, 0, 0.5)">Pariatur veniam velit ad qui sint esse
+									Lorem.</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button id="cm-submit" type="button" class="btn btn-primary">Add comment</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		const urlParams = new URLSearchParams(window.location.search);
+		const id = urlParams.get('id');
+
+		$.getJSON('/data/restaurants.json', (restaurants) => {
+			let restaurant = restaurants.filter(restaurant => restaurant.id == id)[0];
+			let isLiked = false;
+			let isDisliked = false;
+			let isFavorited = false;
+
+			$('#name').text(restaurant.name);
+			$('#description').text(restaurant.description);
+			$('#phone').text(restaurant.phone);
+			$('#email').text(restaurant.email);
+			$('#time').text(`${restaurant.opened_at} - ${restaurant.closed_at}`);
+			$('.restaurant-img').attr('src', restaurant.image_url);
+
+			// like
+			$('#like-label').text(`Like (${restaurant.likes})`);
+			$('#dislike-label').text(`Dislike (${restaurant.dislikes})`);
+			$('#favorite-label').text(`Favorite (${restaurant.favorites})`);
+
+			// like ratio
+			$('#like-ratio').css('width', `${restaurant.likes / (restaurant.likes + restaurant.dislikes) * 100}%`);
+
+			// btn
+			$('#like-btn').click(() => {
+				if (!isLiked) {
+					// label
+					$('#like-label').text(`Liked (${restaurant.likes + 1})`);
+					$('#dislike-label').text(`Dislike (${restaurant.dislikes})`);
+					$('#like-ratio').css('width',
+						`${(restaurant.likes + 1) / (restaurant.likes + restaurant.dislikes + 1) * 100}%`);
+					// btn
+					$('#like-btn').addClass('light-blue');
+					$('#dislike-btn').removeClass('light-blue');
+					isDisliked = false;
+				} else {
+					// label
+					$('#like-label').text(`Like (${restaurant.likes})`);
+					$('#like-ratio').css('width',
+						`${restaurant.likes / (restaurant.likes + restaurant.dislikes) * 100}%`);
+					$('#like-btn').removeClass('light-blue');
+				}
+				isLiked = !isLiked;
+			});
+
+			$('#dislike-btn').click(() => {
+				if (!isDisliked) {
+					// label
+					$('#like-label').text(`Like (${restaurant.likes})`);
+					$('#dislike-label').text(`Disliked (${restaurant.dislikes + 1})`);
+					$('#like-ratio').css('width',
+						`${restaurant.likes / (restaurant.likes + restaurant.dislikes + 1) * 100}%`);
+					// btn
+					$('#dislike-btn').addClass('light-blue');
+					$('#like-btn').removeClass('light-blue');
+					isLiked = false;
+				} else {
+					// label
+					$('#dislike-label').text(`Disike (${restaurant.dislikes})`);
+					$('#like-ratio').css('width',
+						`${restaurant.likes / (restaurant.likes + restaurant.dislikes) * 100}%`);
+					$('#dislike-btn').removeClass('light-blue');
+				}
+				isDisliked = !isDisliked;
+			});
+
+			$('#favorite-btn').click(() => {
+				if (!isFavorited) {
+					$('#favorite-label').text(`Favorited (${restaurant.favorites + 1})`);
+					$('#favorite-btn').addClass('light-blue');
+				} else {
+					$('#favorite-label').text(`Favorite (${restaurant.favorites})`);
+					$('#favorite-btn').removeClass('light-blue');
+				}
+				isFavorited = !isFavorited;
+			});
+
+			// branch
+			$.getJSON('/data/cities.json', (cities) => {
+				$.getJSON('/data/areas.json', (areas) => {
+					$.getJSON('/data/branches.json', (branches) => {
+						branches = branches.filter(branch => branch.restaurant_id == id);
+						branches = branches.map(branch => {
+							return {
+								...branch,
+								area: areas.filter(area => area.id == branch.area_id)[
+									0].name,
+								city: cities.filter(city => city.id == areas.filter(
+										area => area.id == branch.area_id)[0]
+									.city_id)[0].name
+							}
+						})
+
+						branches.forEach(branch => {
+							$('#branch-container').append(
+								generateBranch(
+									branch
+								)
+							);
+						});
+					});
+				});
+			});
+
+			// menu
+			$.getJSON('/data/menus.json', (menus) => {
+				let id = Cookies.get('id');
+				let role = Cookies.get('role');
+				let now = Date.now();
+
+				menus = menus.filter(menu => menu.restaurant_id == restaurant.id);
+
+				if (role !== 'admin' && id != restaurant.user_id) {
+					menus = menus.filter(menu => menu.is_enabled && (!menu.is_special || (Date.parse(menu
+						.from) <= now && Date.parse(menu.to) >= now)));
+				}
+
+				$('#menu-container').empty();
+
+				menus.forEach((menu) => {
+					$('#menu-container').append(
+						generateMenu(
+							menu
+						)
+					);
+				});
+			});
+
+			// comment
+			$.getJSON('/data/comments.json', (comments) => {
+				comments = comments.filter(comment => comment.restaurant_id == restaurant.id);
+
+				$('#comment-container').empty();
+
+				$.getJSON('/data/users.json', (users) => {
+					comments = comments.map(comment => {
+						return {
+							...comment,
+							username: users.filter(user => user.id == comment.user_id)[0]
+								.username
+						}
+					})
+
+					comments.forEach((comment) => {
+						$('#comment-container').append(
+							generateComment(
+								comment
+							)
+						)
+					});
+				});
+			});
+
+			setInterval(() => {
+				let id = Cookies.get('id');
+
+				if (restaurant.user_id != id && Cookies.get('role') != 'admin') {
+					$('.owner-only').css('display', 'none');
+				} else {
+					$('.unprivileged-only').css('display', 'none');
+				}
+			}, 100);
+		})
+
+		$('#cm-submit').click(() => {
+			$('#comment-container').append(
+				generateComment(
+					{
+						'username': Cookies.get('username'),
+						'created_at': new Date().toJSON().slice(0,10).replace(/-/g,'-'),
+						'content': $('#cm-content').val()
+					}
+				)
+			)
+
+			$('#comment-modal').modal('toggle');
+		});
+
+		let viewBranch = (id) => {
+			// manupluation
+			$('#view-city').val($(`#branch-${id}-city`).text()).trigger('change');
+			$('#view-area').val($(`#branch-${id}-area`).text()).trigger('change');
+			$('#view-address').val($(`#branch-${id}-address`).text()).trigger('change');
+
+			codeAddress($('#view-address').val());
+		}
+
+		let modifyBranch = (id) => {
+			$('#city').val($(`#branch-${id}-city`).text()).trigger('change');
+			$('#area').val($(`#branch-${id}-area`).text()).trigger('change');
+			$('#address').val($(`#branch-${id}-address`).text()).trigger('change');
+			$('#branch-id').val(id);
+		}
+
+		$(document.form).submit(e => {
+			e.preventDefault();
+			let id = $('#branch-id').val();
+			$(`#branch-${id}-city`).text($('#city').val());
+			$(`#branch-${id}-area`).text($('#area').val());
+			$(`#branch-${id}-address`).text($('#address').val());
+			$('#branch-modal').modal('toggle');
+		})
+
+		let generateBranch = ({
+			id,
+			city,
+			area,
+			address,
+			image_url,
+		}) => `
+			<div id="branch-${id}" class="col-12 col-sm-6 col-lg-4 mb-4">
+				<!-- Card Wider -->
+				<div class="card card-cascade wider">
+					<!-- Card image -->
+					<div class="view view-cascade overlay waves-effect waves-light">
+						<img class="card-img-top"
+							src="${image_url}"
+							alt="Card image cap">
+						<div onclick="viewBranch(${id})" class="mask rgba-white-slight" data-toggle="modal" data-target="#view-branch-modal"></div>
+
+						<div class="owner-only w-100 m-0 position-absolute float-right pink p-2" style="bottom: 0; right: 0">
+							<span class="float-left">Owner taskbar</span>
+							<div onclick="$('#branch-${id}').fadeOut(500, () => $('#branch').remove())" class="btn pink darken-4 btn-circle shadow-none m-0 waves-effect waves-light float-right">
+								<i class="far fa-trash-alt"></i>
+							</div>
+							<div onclick="modifyBranch(${id})" data-toggle="modal" data-target="#branch-modal" class="btn pink darken-4 btn-circle shadow-none m-0 waves-effect waves-light float-right mr-2">
+								<i class="far fa-edit"></i>
+							</div>
+						</div>
+					</div>
+
+					<!-- Card content -->
+					<div class="card-body card-body-cascade text-center">
+
+						<!-- Title -->
+						<h4 class="card-title text-primary"><strong id="branch-${id}-city">${city}</strong></h4>
+						<!-- Subtitle -->
+						<h5 class="blue-text pb-2"><strong id="branch-${id}-area">${area}</strong></h5>
+						<!-- Text -->
+						<p id="branch-${id}-address" class="card-text">${address}</p>
+
+						<div class="text-primary">
+							<!-- Facebook -->
+							<a class="fb-ic">
+								<i class="fab fa-facebook-f mr-4"> </i>
+							</a>
+							<!-- Twitter -->
+							<a class="tw-ic">
+								<i class="fab fa-twitter mr-4"> </i>
+							</a>
+							<!-- Google +-->
+							<a class="gplus-ic">
+								<i class="fab fa-google-plus-g mr-4"> </i>
+							</a>
+							<!--Linkedin -->
+							<a class="li-ic">
+								<i class="fab fa-linkedin-in mr-4"> </i>
+							</a>
+							<!--Instagram-->
+							<a class="ins-ic">
+								<i class="fab fa-instagram"> </i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		`;
+
+		let generateMenu = ({
+			id,
+			is_special,
+			title,
+			from,
+			to,
+			image_url,
+		}) => `
+			<div id="menu-${id}" class="col-12 col-sm-6 col-lg-4">
+				<!-- Card Wider -->
+				<div class="card card-cascade wider">
+					<!-- Card image -->
+					<div class="view view-cascade overlay waves-effect waves-light">
+						<img class="card-img-top"
+							src="${image_url}"
+							alt="Card image cap"
+							style="width: 100%; height: 200px; object-fit:cover;"
+							>
+						<a class="text-white" href="/page/menu/show.html?id=${id}">
+							<div class="mask rgba-white-slight"></div>
+						</a>
+
+						<div class="owner-only w-100 m-0 position-absolute float-right light-blue p-2" style="bottom: 0; right: 0">
+							<span class="float-left">Owner taskbar</span>
+							<div onclick="$('#menu-${id}').fadeOut(500, () => $('#menu-${id}').remove())" class="btn light-blue darken-4 btn-circle shadow-none m-0 waves-effect waves-light float-right">
+								<i class="far fa-trash-alt"></i>
+							</div>
+							<a class="text-white" href="/page/menu/edit.html?id=${id}">
+								<div class="btn light-blue darken-4 btn-circle shadow-none m-0 waves-effect waves-light float-right mr-2">
+									<i class="far fa-edit"></i>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<!-- Card content -->
+					<div class="card-body card-body-cascade text-center">
+
+						<!-- Title -->
+						<h4 class="card-title text-primary"><strong>${title}${is_special ? ` (session)` : ''}</strong></h4>
+						<!-- Text -->
+
+						${is_special ? `
+							<p class="card-text">Duration: <code>${from}</code> - <code>${to}</code></p>
+						` : ''}
+
+						<div class="text-primary">
+							<!-- Facebook -->
+							<a class="fb-ic">
+								<i class="fab fa-facebook-f mr-4"> </i>
+							</a>
+							<!-- Twitter -->
+							<a class="tw-ic">
+								<i class="fab fa-twitter mr-4"> </i>
+							</a>
+							<!-- Google +-->
+							<a class="gplus-ic">
+								<i class="fab fa-google-plus-g mr-4"> </i>
+							</a>
+							<!--Linkedin -->
+							<a class="li-ic">
+								<i class="fab fa-linkedin-in mr-4"> </i>
+							</a>
+							<!--Instagram-->
+							<a class="ins-ic">
+								<i class="fab fa-instagram"> </i>
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		`;
+
+		let generateComment = ({
+			username,
+			created_at,
+			content,
+		}) => `
+			<div class="card my-2 mt-4" style="color: rgba(0, 0, 0, 0.6);">
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<p>
+								<a class="float-left font-bold font-wide"><strong>${username}</strong></a>
+								<br>
+								<small>Posted At: <code>${created_at}</code></small>
+							</p>
+							<div class="clearfix"></div>
+							<hr class="vector-black">
+							<span class="font-desc">${content}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		`;
+
+		$.getJSON('/data/cities.json', (cities) => {
+			this.cityArray = cities;
+		});
+
+		$.getJSON('/data/areas.json', (areas) => {
+			this.areaArray = areas;
+		});
+
+		let update = (str) => {
+			$(`#${str}-options`).empty();
+
+			let arr = this[str + 'Array'].filter(city => JSON.stringify(city).includes($(`#${str}`).val()));
+
+			if (arr.length > 1) {
+				arr.forEach(city => {
+					$(`#${str}-options`).append(`
+						<div class="autocomplete-option animate">${city.name}</div>
+					`);
+				});
+			}
+
+			$('.autocomplete-option').click(({currentTarget}) => {
+				let input = $(currentTarget.parentElement).siblings('input');
+				input.val($(currentTarget).text());
+				input.focus();
+			});
+		}
+
+		['city', 'area'].forEach((e) => {
+			$(`#${e}`).on({
+				focus: () => {
+					setTimeout(() => {
+						update(e);
+						$(`#${e}-options`).css('opacity', 1);
+					}, 100);
+				},
+				blur: () => {
+					setTimeout(() => {
+						$(`#${e}-options`).css('opacity', 0);
+					}, 100);
+				},
+				keyup: () => {
+					setTimeout(() => {
+						update(e);
+					}, 100);
+				}
+			});
+		});
+	</script>
+
+    <script>
+		var map;
+
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: {
+					lat: 22.3193,
+					lng: 114.1694
+				},
+				zoom: 16
+			});
+		}
+
+		function codeAddress(address) {
+			geocoder = new google.maps.Geocoder();
+			geocoder.geocode({
+				'address': address
+			}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var myOptions = {
+						zoom: 16,
+						center: results[0].geometry.location,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					}
+					map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+					var marker = new google.maps.Marker({
+						map: map,
+						position: results[0].geometry.location
+					});
+				}
+			});
+		}
+	</script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbFCS1ItQSJqFEywM7IUXkdC24btCUnwE&callback=initMap" async defer></script>
+</body>
+
+</html>

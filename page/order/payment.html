@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+	<!-- auto complete -->
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div class="container my-5 mt-5">
+		<div class="row pt-5">
+			<div class="col">
+				<h1 class="display-1">Checkout</h1>
+				<hr>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, architecto. Tenetur cumque ab
+					voluptates aspernatur ex repellendus magni ut, vero unde maxime veniam necessitatibus sint debitis
+					voluptate accusamus sit id!
+				</p>
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Stepers Wrapper -->
+						<ul class="stepper stepper-horizontal">
+							<!-- First Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Delivery address</span>
+								</a>
+							</li>
+
+							<!-- Second Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-pen"></i></span>
+									<span class="label">Choose payment</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-clipboard-list"></i></span>
+									<span class="label">Complete</span>
+								</a>
+							</li>
+						</ul>
+						<!-- /.Stepers Wrapper -->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col">
+						<table id="items" class="text-center table table-bordered table-hover table-striped table-editable">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<hr>
+
+				<h1 class="display-4">Choose Payment</h1>
+				
+				<hr>
+
+				<p>
+					Excepteur exercitation commodo irure qui. Consectetur cillum esse velit aliquip laboris aliqua tempor consectetur exercitation voluptate aliquip nulla veniam.Enim tempor voluptate consequat velit sit proident deserunt sint amet culpa aute eu incididunt.
+				</p>
+
+				<p>
+					Supported payment:
+				</p>
+
+				<p class="display-4">
+					<i class="fab fa-cc-visa"></i>
+					<i class="fab fa-cc-stripe"></i>
+					<i class="fab fa-cc-paypal"></i>
+					<i class="fab fa-cc-mastercard"></i>
+					<i class="fab fa-cc-jcb"></i>
+					<i class="fab fa-cc-discover"></i>
+					<i class="fab fa-cc-diners-club"></i>
+					<i class="fab fa-cc-apple-pay"></i>
+					<i class="fab fa-cc-amex"></i>
+					<i class="fab fa-cc-amazon-pay"></i>
+				</p>
+
+				<hr>
+
+				<form name="form" action="#">
+					<div class="row">
+						<div class="col-6">
+							Card Holder
+						</div>
+
+						<div class="col">
+							Expiration Date
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="row">
+								<div class="col-6">
+									<div class="md-form md-bg mt-2">
+										<input type="text" id="name" class="form-control" required>
+										<label for="name">Name</label>
+										<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+											enim dolor.</small>
+									</div>
+								</div>
+
+								<div class="col-3">
+									<div class="md-form md-bg mt-2">
+										<input type="text" pattern="^\d{1,2}$" id="MM" class="form-control" required>
+										<label for="MM">MM</label>
+										<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+											enim dolor.</small>
+									</div>
+								</div>
+
+								<div class="col-3">
+									<div class="md-form md-bg mt-2">
+										<input type="text" pattern="^\d{4}$" id="YYYY" class="form-control" required>
+										<label for="YYYY">YYYY</label>
+										<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+											enim dolor.</small>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-8">
+									Card Number
+								</div>
+
+								<div class="col">
+									CVV
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-8">
+									<div class="md-form md-bg mt-2">
+										<input type="text" pattern="^\d*$" id="Card Number" class="form-control" required>
+										<label for="Card Number">Card Number</label>
+										<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+											enim dolor.</small>
+									</div>
+								</div>
+
+								<div class="col-4">
+									<div class="md-form md-bg mt-2">
+										<input type="text" id="CVV" class="form-control" required>
+										<label for="CVV">CVV</label>
+										<small style="color: rgba(0, 0, 0, 0.5)">Eu voluptate laboris cillum irure do non mollit
+											enim dolor.</small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col text-center">
+							<button type="submit" class="btn pink text-white">submit</button>
+							<button type="reset" class="btn pink text-white" onclick="$('#dishes>tbody>tr').fadeOut(500, () => $('#dishes>tbody>tr').remove());">reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		let li = ({
+			id,
+			name,
+			price,
+			quantity,
+		}) => `
+			<tr>
+				<th>${id}</th>
+				<td>${name}</td>
+				<td>$ ${price.toFixed(2)}</td>
+				<td>${quantity}</td>
+				<td>$ ${(price * quantity).toFixed(2)}</td>
+			</tr>
+		`;
+
+		setTimeout(() => {
+			$.getJSON('/data/dishes.json', dishes => {
+				if (!!Cookies.get('cart')) {
+					let items = JSON.parse(Cookies.get('cart'));
+
+					items = items.map(item => {
+						return {
+							...item,
+							...dishes.filter(dish => dish.id == item.id)[0],
+						}
+					})
+
+					$('#items>tbody').empty();
+
+					items.forEach(item => {
+						$('#items>tbody').append(
+							li(
+								item
+							)
+						);
+					});
+				}
+			});
+		}, 100);
+
+		$(document.form).submit(e => {
+			e.preventDefault();
+
+			Cookies.remove('cart');
+
+			window.location.assign('/page/order/success.html');
+		})
+	</script>
+</body>
+
+</html>

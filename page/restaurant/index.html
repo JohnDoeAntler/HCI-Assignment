@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+	</script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
+	</script>
+
+	<link rel="stylesheet" href="/style/page/restaurant/index.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div id="search-pane" class="container-fluid">
+		<div class="row">
+			<div class="col px-0">
+				<img class="w-100 d-xs-none d-sm-none d-lg-none" style="object-fit: cover"
+					src="https://images.pexels.com/photos/2591276/pexels-photo-2591276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-sm-6 col-lg-3 left-pane pink pt-5 pl-sm-5 text-white">
+				<div class="mt-5"></div>
+
+				<h1 class="display-4">Search Restaurant</h1>
+
+				<hr>
+
+				<p>
+					Sint reprehenderit qui sunt ut adipisicing id duis culpa. Minim nisi aute et aliquip excepteur non
+					tempor sunt ex irure. Reprehenderit officia ullamco non aliquip eiusmod consectetur.
+				</p>
+
+				<hr>
+
+				<form name="form" action="#">
+					<!-- Medium input -->
+					<div class="md-form md-bg">
+						<input type="text" id="search" class="form-control text-white">
+						<label for="search">Search</label>
+						<small style="color: rgba(255, 255, 255, 0.5)">Duis nisi sint dolor sunt consequat incididunt dolor
+							cillum.</small>
+					</div>
+
+					<div class="row">
+						<div class="col-12 col-sm-6 pb-3 pb-sm-0 pr-sm-1">
+							<button type="submit" class="btn shadow-none w-100 m-0"
+								style="background-color: rgba(0, 0, 0, 0.1);">Search</button>
+						</div>
+						<div class="col-12 col-sm-6 pl-sm-1">
+							<button type="reset" class="btn shadow-none w-100 m-0"
+								style="background-color: rgba(0, 0, 0, 0.1);">Reset</button>
+						</div>
+					</div>
+
+					<div class="row mt-2">
+						<div class="col-12 pb-3 pb-sm-0">
+							<button id="selfRestaurants" type="button" class="btn operator-only shadow-none w-100 m-0"
+								style="background-color: rgba(0, 0, 0, 0.1);">View Own Restaurants</button>
+						</div>
+					</div>
+				</form>
+
+				<p class="mt-3 operator-only">
+					Looking for adding own restaurant? <a href="/page/restaurant/new_1.html">Click here.</a>
+				</p>
+			</div>
+
+			<div class="col-12 col-sm-6 col-lg-9 p-0">
+				<img src="https://images.pexels.com/photos/2591276/pexels-photo-2591276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+					class="w-100 h-100 position-absolute" style="z-index: -1; object-fit: cover;">
+
+				<div class="pl-lg-5">
+					<div class="pl-lg-5">
+						<div class="pt-0 pt-xs-5 pt-sm-5 p-lg-5 m-5">
+							<!-- List group-->
+							<ul id="list-pane" class="list-group shadow shadow-lg">
+								<!-- list group item-->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		$('#selfRestaurants').click(e => {
+			$.getJSON('/data/restaurants.json', restaurants => {
+				let results = restaurants.filter(restaurant => restaurant.user_id == Cookies.get('id'));
+
+				$('#list-pane').empty();
+
+				results.forEach(restaurant => {
+					$('#list-pane').append(
+						generateListItem(
+							restaurant
+						)
+					).hide().fadeIn(500);
+				});
+			});
+		})
+
+		$(document.form).submit(e => {
+			e.preventDefault();
+
+			$.getJSON('/data/restaurants.json', restaurants => {
+				let search = $('#search').val();
+
+				let results = restaurants.filter(restaurant => Object.values(restaurant).join().toLowerCase().includes(search.toLowerCase()));
+
+				$('#list-pane').empty();
+
+				results.forEach(restaurant => {
+					$('#list-pane').append(
+						generateListItem(
+							restaurant
+						)
+					).hide().fadeIn(500);
+				});
+			});
+		});
+
+		let generateListItem = ({
+			id,
+			name,
+			description,
+			favorites,
+			likes,
+			dislikes,
+			phone,
+			email,
+			image_url,
+		}) => `
+			<li id="li-${id}" class="list-group-item border-0 p-0 my-1 shadow-lg">
+				<!-- Custom content-->
+				<div class="media"></div>
+				<!-- End -->
+				<div class="row m-0">
+					<div class="col-3 p-0 view waves-effect waves-light">
+						<img
+							class="thumbnail animate"
+							src="${image_url}"
+							alt="Generic placeholder image" style="width: 100%; height: 100%; object-fit: cover;" >
+					</div>
+					<div class="col-9">
+						<div class="media-body p-3">
+							<div>
+								<h5 class="mt-0 font-weight-bold d-inline">${name}</h5>
+								<span class="float-right">
+									<small>
+										<i class="far fa-star mr-2"></i> Favorite (${favorites})
+									</small>
+								</span>
+							</div>
+
+							<p class="text-muted mb-0 small" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">${description}</p>
+
+							<div class="row mt-3">
+								<div class="col px-3">
+									<div class="progress pink darken-3 mb-3" style="height: 2px;">
+										<div class="progress-bar pink lighten-3" role="progressbar" style="width: ${likes / (likes + dislikes) * 100}%"></div>
+									</div>
+									<span>
+										<small>
+										<i class="far fa-thumbs-up mr-3"></i> Like (${likes})
+										</small>
+									</span>
+									<span class="ml-2 float-right">
+										<small>
+										<i class="far fa-thumbs-down mr-3"></i> Dislike (${dislikes})
+										</small>
+									</span>
+								</div>
+							</div>
+
+							<hr class="my-2">
+
+							<div class="row">
+								<div class="col">
+									<small>
+										<i class="fas fa-phone mr-3"></i> ${phone} 
+									</small>
+
+									<hr class="my-2">
+
+									<small>
+										<i class="fas fa-envelope mr-3"></i> ${email} 
+									</small>
+								</div>
+							</div>
+
+							<a href="/page/restaurant/show.html?id=${id}">
+								<button type="button" class="btn pink text-white m-0 mt-3 w-100 waves-effect waves-light">View</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</li>
+		`;
+	</script>
+</body>
+
+</html>

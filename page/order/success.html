@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+	<!-- auto complete -->
+	<link rel="stylesheet" href="/style/autocomplete.css">
+</head>
+
+<body>
+	<div id="navbar"></div>
+
+	<div class="container my-5 mt-5">
+		<div class="row pt-5">
+			<div class="col">
+				<h1 class="display-1">Checkout</h1>
+				<hr>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, architecto. Tenetur cumque ab
+					voluptates aspernatur ex repellendus magni ut, vero unde maxime veniam necessitatibus sint debitis
+					voluptate accusamus sit id!
+				</p>
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Stepers Wrapper -->
+						<ul class="stepper stepper-horizontal">
+
+							<!-- First Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Delivery address</span>
+								</a>
+							</li>
+
+							<!-- Second Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Choose payment</span>
+								</a>
+							</li>
+
+							<!-- Third Step -->
+							<li class="warning">
+								<a href="#!">
+									<span class="circle"><i class="fas fa-check-circle"></i></span>
+									<span class="label">Complete</span>
+								</a>
+							</li>
+						</ul>
+						<!-- /.Stepers Wrapper -->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col">
+						<table id="items" class="text-center table table-bordered table-hover table-striped table-editable">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="row mt-3">
+					<div class="col text-center">
+						<a href="/">
+							<button type="button" class="btn pink text-white">Back to index</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Success</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<div class="modal-body">
+					The payment has been successfully made.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$('#navbar').load('/component/navbar.html');
+		$('#footer').load('/component/footer.html');
+
+		let li = ({
+			id,
+			name,
+			price,
+			quantity,
+		}) => `
+			<tr>
+				<th>${id}</th>
+				<td>${name}</td>
+				<td>$ ${price.toFixed(2)}</td>
+				<td>${quantity}</td>
+				<td>$ ${(price * quantity).toFixed(2)}</td>
+			</tr>
+		`;
+
+		setTimeout(() => {
+			$.getJSON('/data/dishes.json', dishes => {
+				if (!!Cookies.get('cart')) {
+					let items = JSON.parse(Cookies.get('cart'));
+
+					items = items.map(item => {
+						return {
+							...item,
+							...dishes.filter(dish => dish.id == item.id)[0],
+						}
+					})
+
+					$('#items>tbody').empty();
+
+					items.forEach(item => {
+						$('#items>tbody').append(
+							li(
+								item
+							)
+						);
+					});
+				}
+			});
+		}, 100);
+
+		$('#success').modal('toggle');
+	</script>
+</body>
+
+</html>
